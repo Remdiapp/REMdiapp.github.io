@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — REMdi</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:  #faf7f2;
+      --sand:   #f0ead9;
+      --linen:  #e8dfc8;
+      --bark:   #8b7355;
+      --umber:  #5c4a32;
+      --ink:    #2c2318;
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'Jost', 'Helvetica Neue', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--cream);
+      color: var(--ink);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.55;
+    }
+
+    nav {
+      padding: 28px 52px;
+      border-bottom: 1px solid var(--linen);
+    }
+    .wordmark {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      text-decoration: none;
+      font-style: italic;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    main::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(232,220,196,0.5) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+    }
+
+    .eyebrow {
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-bottom: 28px;
+      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+    }
+
+    .sub {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--umber);
+      line-height: 1.75;
+      letter-spacing: 0.02em;
+      margin-bottom: 52px;
+      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bark);
+      text-decoration: none;
+      position: relative;
+      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+      transition: color 0.2s;
+    }
+    .back-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--ink);
+      transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .back-link:hover { color: var(--ink); }
+    .back-link:hover::after { width: 100%; }
+    .back-link svg { transition: transform 0.2s; }
+    .back-link:hover svg { transform: translateX(-3px); }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--linen);
+      margin: 44px auto;
+      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+    }
+
+    footer {
+      border-top: 1px solid var(--linen);
+      padding: 28px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--bark);
+      letter-spacing: 0.04em;
+    }
+    .footer-email {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--bark);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-email:hover { color: var(--ink); }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 22px 24px; }
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="wordmark">REMdi</a>
+  </nav>
+
+  <main>
+    <div class="content">
+      <p class="eyebrow">Legal</p>
+      <h1>Terms of Service</h1>
+      <div class="divider"></div>
+      <p class="sub">Our full terms of service are being drafted and will be published before REMdi launches. Questions in the meantime? Reach us at hello@remdiapp.com.</p>
+      <a href="/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.5 2.5L4 7L8.5 11.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to home
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-copy">© REMdi 2026. All rights reserved.</p>
+    <a href="mailto:hello@remdiapp.com" class="footer-email">hello@remdiapp.com</a>
+  </footer>
+
+</body>
+</html>
