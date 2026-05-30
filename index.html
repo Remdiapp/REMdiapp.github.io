@@ -46,10 +46,10 @@
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 999;
-      opacity: 0.4;
+      opacity: 0.55;
     }
 
     /* ── Typography ── */
@@ -112,19 +112,24 @@
       overflow: hidden;
     }
 
-    /* Subtle radial background bloom */
+    /* Warm aura — emanates from the center of all hero content and dissolves to nothing */
     .hero::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80vw;
-      height: 80vw;
-      max-width: 900px;
-      max-height: 900px;
-      background: radial-gradient(ellipse at center, rgba(240,234,217,0.8) 0%, transparent 70%);
-      border-radius: 50%;
+      transform: translate(-50%, -52%);
+      width: 458vw;
+      height: 416vh;
+      background: radial-gradient(ellipse at center,
+        rgba(210, 190, 152, 0.58)  0%,
+        rgba(216, 198, 163, 0.46)  12%,
+        rgba(222, 207, 176, 0.34)  24%,
+        rgba(228, 215, 186, 0.22)  38%,
+        rgba(233, 221, 194, 0.12)  52%,
+        rgba(237, 226, 202, 0.05)  66%,
+        transparent                80%
+      );
       pointer-events: none;
     }
 
@@ -139,7 +144,7 @@
       height: 340px;
       top: -80px;
       right: -80px;
-      background: radial-gradient(circle, rgba(224,212,190,0.35) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(224,212,190,0.52) 0%, transparent 70%);
       animation: drift 18s ease-in-out infinite;
     }
     .orb-2 {
@@ -147,7 +152,7 @@
       height: 260px;
       bottom: 40px;
       left: -60px;
-      background: radial-gradient(circle, rgba(208,194,170,0.28) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(208,194,170,0.44) 0%, transparent 70%);
       animation: drift 24s ease-in-out infinite reverse;
     }
     @keyframes drift {
@@ -669,8 +674,8 @@
 
     revealEls.forEach(el => observer.observe(el));
 
-    // ── Form submit handler ──
-    function handleSubmit(context) {
+    // ── Form submit handler (Formspree) ──
+    async function handleSubmit(context) {
       const emailInput = document.getElementById(context + '-email');
       const formEl    = context === 'hero'
         ? document.getElementById('hero-form-wrap')
@@ -683,7 +688,6 @@
       if (!emailRegex.test(email)) {
         emailInput.style.borderColor = 'rgba(139,115,85,0.6)';
         emailInput.focus();
-        // Gentle shake
         emailInput.animate([
           { transform: 'translateX(0)' },
           { transform: 'translateX(-5px)' },
@@ -694,8 +698,18 @@
         return false;
       }
 
-      // In production: POST to your API here
-      // fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email }) })
+      // Submit to Formspree
+      try {
+        const res = await fetch('https://formspree.io/f/mjgzdybe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        if (!res.ok) throw new Error('Network response was not ok');
+      } catch (err) {
+        // Silently continue — show thank you regardless to avoid blocking UX
+        console.warn('Formspree submission error:', err);
+      }
 
       // Fade out form, show thank you
       formEl.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
