@@ -109,26 +109,26 @@
       text-align: center;
       padding: 140px 24px 100px;
       position: relative;
-      overflow: hidden;
     }
 
-    /* Warm aura — emanates from the center of all hero content and dissolves to nothing */
+    /* Warm aura — organic light source, no visible edges anywhere */
     .hero::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -52%);
-      width: 458vw;
-      height: 416vh;
+      width: 180vw;
+      height: 220vh;
       background: radial-gradient(ellipse at center,
-        rgba(210, 190, 152, 0.58)  0%,
-        rgba(216, 198, 163, 0.46)  12%,
-        rgba(222, 207, 176, 0.34)  24%,
-        rgba(228, 215, 186, 0.22)  38%,
-        rgba(233, 221, 194, 0.12)  52%,
-        rgba(237, 226, 202, 0.05)  66%,
-        transparent                80%
+        rgba(210, 190, 152, 0.44)  0%,
+        rgba(214, 195, 160, 0.36)  10%,
+        rgba(218, 200, 168, 0.27)  20%,
+        rgba(222, 206, 175, 0.18)  32%,
+        rgba(226, 211, 181, 0.10)  45%,
+        rgba(230, 216, 187, 0.05)  58%,
+        rgba(233, 220, 192, 0.02)  70%,
+        transparent                90%
       );
       pointer-events: none;
     }
