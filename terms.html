@@ -18,7 +18,6 @@
       --ink:    #2c2318;
       --serif:  'Cormorant Garamond', Georgia, serif;
       --sans:   'Jost', 'Helvetica Neue', sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     body {
@@ -44,6 +43,12 @@
     nav {
       padding: 28px 52px;
       border-bottom: 1px solid var(--linen);
+      position: sticky;
+      top: 0;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
     }
     .wordmark {
       font-family: var(--serif);
@@ -55,102 +60,214 @@
       font-style: italic;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 24px;
-      text-align: center;
-      position: relative;
+    .page-header {
+      padding: 80px 52px 60px;
+      border-bottom: 1px solid var(--linen);
+      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) both;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
     }
-
-    main::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(232,220,196,0.5) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      max-width: 480px;
-    }
-
     .eyebrow {
       font-size: 0.68rem;
       font-weight: 400;
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--bark);
-      margin-bottom: 28px;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) both;
+      margin-bottom: 20px;
     }
-
-    h1 {
+    .page-header h1 {
       font-family: var(--serif);
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 300;
       font-style: italic;
       color: var(--ink);
       line-height: 1.1;
       margin-bottom: 20px;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+    }
+    .meta {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--bark);
+      letter-spacing: 0.06em;
     }
 
-    .sub {
+    .layout {
+      display: flex;
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 52px;
+      gap: 80px;
+    }
+
+    .toc {
+      width: 220px;
+      flex-shrink: 0;
+      padding: 52px 0;
+    }
+    .toc-inner {
+      position: sticky;
+      top: 100px;
+    }
+    .toc-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-bottom: 20px;
+    }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .toc-list a {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--umber);
+      text-decoration: none;
+      padding: 5px 0 5px 12px;
+      border-left: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+    .toc-list a:hover {
+      color: var(--ink);
+      border-left-color: var(--bark);
+    }
+
+    .content {
+      flex: 1;
+      min-width: 0;
+      padding: 52px 0 80px;
+    }
+
+    .section {
+      margin-bottom: 56px;
+      animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .section:nth-child(1)  { animation-delay: 0.05s; }
+    .section:nth-child(2)  { animation-delay: 0.10s; }
+    .section:nth-child(3)  { animation-delay: 0.15s; }
+    .section:nth-child(4)  { animation-delay: 0.20s; }
+    .section:nth-child(5)  { animation-delay: 0.25s; }
+    .section:nth-child(6)  { animation-delay: 0.30s; }
+    .section:nth-child(7)  { animation-delay: 0.35s; }
+    .section:nth-child(8)  { animation-delay: 0.40s; }
+    .section:nth-child(9)  { animation-delay: 0.45s; }
+    .section:nth-child(10) { animation-delay: 0.50s; }
+    .section:nth-child(11) { animation-delay: 0.55s; }
+    .section:nth-child(12) { animation-delay: 0.60s; }
+    .section:nth-child(13) { animation-delay: 0.65s; }
+    .section:nth-child(14) { animation-delay: 0.70s; }
+    .section:nth-child(15) { animation-delay: 0.75s; }
+    .section:nth-child(16) { animation-delay: 0.80s; }
+    .section:nth-child(17) { animation-delay: 0.85s; }
+
+    .section-number {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-bottom: 10px;
+    }
+    .section h2 {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .section p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--umber);
+      line-height: 1.85;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      list-style: none;
+      margin: 12px 0 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .section ul li {
       font-size: 0.88rem;
       font-weight: 300;
       color: var(--umber);
       line-height: 1.75;
       letter-spacing: 0.02em;
-      margin-bottom: 52px;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+      padding-left: 20px;
+      position: relative;
+    }
+    .section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--bark);
+      font-size: 0.75rem;
     }
 
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--bark);
-      text-decoration: none;
-      position: relative;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both;
-      transition: color 0.2s;
+    /* Caps disclaimer blocks */
+    .caps-block {
+      background: var(--sand);
+      border: 1px solid var(--linen);
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin: 16px 0;
     }
-    .back-link::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--ink);
-      transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+    .caps-block p {
+      font-size: 0.78rem !important;
+      letter-spacing: 0.04em !important;
+      line-height: 1.7 !important;
+      color: var(--ink) !important;
+      font-weight: 400 !important;
+      margin-bottom: 0 !important;
     }
-    .back-link:hover { color: var(--ink); }
-    .back-link:hover::after { width: 100%; }
-    .back-link svg { transition: transform 0.2s; }
-    .back-link:hover svg { transform: translateX(-3px); }
+
+    .highlight-box {
+      background: var(--sand);
+      border-left: 2px solid var(--bark);
+      padding: 20px 24px;
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .highlight-box p {
+      margin-bottom: 0 !important;
+      font-size: 0.85rem !important;
+    }
 
     .divider {
       width: 40px;
       height: 1px;
       background: var(--linen);
-      margin: 44px auto;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+      margin: 0 0 52px 0;
+    }
+
+    a.inline-link {
+      color: var(--umber);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    a.inline-link:hover { color: var(--ink); }
+
+    strong.label {
+      font-weight: 400;
+      color: var(--ink);
     }
 
     footer {
@@ -168,7 +285,11 @@
       color: var(--bark);
       letter-spacing: 0.04em;
     }
-    .footer-email {
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
       font-size: 0.75rem;
       font-weight: 300;
       color: var(--bark);
@@ -176,15 +297,27 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-email:hover { color: var(--ink); }
+    .footer-links a:hover { color: var(--ink); }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .section {
+      scroll-margin-top: 120px;
+    }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
       nav { padding: 22px 24px; }
+      .page-header { padding: 52px 24px 40px; }
+      .layout { flex-direction: column; padding: 0 24px; gap: 0; }
+      .toc { display: none; }
+      .content { padding: 40px 0 60px; }
       footer { padding: 24px; flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -195,24 +328,259 @@
     <a href="/" class="wordmark">REMdi</a>
   </nav>
 
-  <main>
-    <div class="content">
-      <p class="eyebrow">Legal</p>
-      <h1>Terms of Service</h1>
+  <div class="page-header">
+    <p class="eyebrow">Legal</p>
+    <h1>Terms of Service</h1>
+    <p class="meta">Effective date: May 30, 2026 &nbsp;·&nbsp; Version 1.0</p>
+  </div>
+
+  <div class="layout">
+
+    <aside class="toc">
+      <div class="toc-inner">
+        <p class="toc-label">Contents</p>
+        <ul class="toc-list">
+          <li><a href="#s1">1. Acceptance & changes</a></li>
+          <li><a href="#s2">2. The service</a></li>
+          <li><a href="#s3">3. Medical disclaimer</a></li>
+          <li><a href="#s4">4. Eligibility & accounts</a></li>
+          <li><a href="#s5">5. License & IP</a></li>
+          <li><a href="#s6">6. Your data</a></li>
+          <li><a href="#s7">7. Subscriptions & billing</a></li>
+          <li><a href="#s8">8. Lifetime purchase</a></li>
+          <li><a href="#s9">9. Prohibited conduct</a></li>
+          <li><a href="#s10">10. Availability</a></li>
+          <li><a href="#s11">11. Termination</a></li>
+          <li><a href="#s12">12. Disclaimers</a></li>
+          <li><a href="#s13">13. Limitation of liability</a></li>
+          <li><a href="#s14">14. Indemnification</a></li>
+          <li><a href="#s15">15. Dispute resolution</a></li>
+          <li><a href="#s16">16. Apple App Store terms</a></li>
+          <li><a href="#s17">17. General</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="content">
+
+      <section class="section" id="s1">
+        <p class="section-number">Section 01</p>
+        <h2>Acceptance and changes</h2>
+        <p>These Terms of Service ("Terms") govern your access to and use of the REMdi mobile application, website, and related services (collectively, the "Service"). These Terms are a legally binding agreement between you and REMdi LLC, a Wyoming limited liability company once formed, and until that formation is completed, the individual developer operating REMdi ("REMdi," "we," "us," or "our").</p>
+        <p>By downloading, installing, accessing, or using the Service, or by clicking to accept these Terms, you agree to be bound by them. If you do not agree, do not use the Service. Your use of REMdi also means you agree to our <a href="/privacy" class="inline-link">Privacy Policy</a>, which is incorporated by reference.</p>
+        <p>We may update these Terms from time to time. If we make a material change, we will provide notice through the app, on our website, or by email. If you continue to use the Service after updated Terms become effective, you agree to the updated Terms.</p>
+      </section>
+
       <div class="divider"></div>
-      <p class="sub">Our full terms of service are being drafted and will be published before REMdi launches. Questions in the meantime? Reach us at hello@remdiapp.com.</p>
-      <a href="/" class="back-link">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8.5 2.5L4 7L8.5 11.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to home
-      </a>
-    </div>
-  </main>
+
+      <section class="section" id="s2">
+        <p class="section-number">Section 02</p>
+        <h2>Description of the service</h2>
+        <p>REMdi is a consumer sleep-optimization app designed to help users wake at a favorable point in their sleep cycle using device, sensor, and related data. REMdi is offered for personal wellness and informational purposes only.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s3">
+        <p class="section-number">Section 03</p>
+        <h2>Medical disclaimer</h2>
+        <div class="highlight-box">
+          <p>REMdi is not a medical device and is not intended to diagnose, treat, cure, or prevent any disease, disorder, or medical condition. REMdi does not provide medical advice, clinical advice, diagnosis, treatment recommendations, emergency services, or health care services of any kind.</p>
+        </div>
+        <p>The Service is not a substitute for professional medical judgment, diagnosis, treatment, or advice from a qualified health care professional. If you believe you have a sleep disorder, another medical condition, or a medical emergency, contact a qualified health care professional or emergency services immediately.</p>
+        <p>You are solely responsible for how you use REMdi and for any decisions you make based on the Service. You should maintain backup alarms and should not rely on REMdi where a missed alarm, delayed wake-up, inaccurate insight, or service interruption could cause injury, unsafe conditions, missed medications, travel disruption, employment issues, or other material harm. Do not use the Service while driving, operating machinery, or performing activities that require your full attention.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s4">
+        <p class="section-number">Section 04</p>
+        <h2>Eligibility and accounts</h2>
+        <p>You must be at least 18 years old, or the age of legal majority in your jurisdiction if higher, to use the Service. By using the Service, you represent and warrant that you meet this requirement and are legally able to enter into these Terms.</p>
+        <p>You may sign in using supported authentication methods, including Sign in with Apple or Sign in with Google. You agree to provide accurate, current, and complete information and to keep it updated. You are responsible for maintaining the confidentiality of your login credentials and for all activity that occurs under your account.</p>
+        <p>If you use Sign in with Apple, Sign in with Google, or any other third-party service in connection with REMdi, your use of those services is also subject to the third party's own terms and policies.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s5">
+        <p class="section-number">Section 05</p>
+        <h2>License and intellectual property</h2>
+        <p>Subject to these Terms, we grant you a limited, personal, non-exclusive, non-transferable, non-sublicensable, revocable license to download, install, and use the app solely for your personal, non-commercial use. If you obtained the app from Apple's App Store, this license is further limited to use on Apple-branded products you own or control, as permitted by Apple's usage rules.</p>
+        <p>The Service — including all software, code, designs, text, graphics, branding, trademarks, and related intellectual property — is owned by REMdi or its licensors and is protected by applicable law.</p>
+        <p>REMdi's sleep-timing logic, optimization methods, scoring models, signal-processing methods, and software architecture are proprietary. Except as expressly permitted by law, you may not copy, modify, distribute, sell, decompile, disassemble, reverse engineer, or attempt to derive source code from any part of the Service or its underlying technology.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s6">
+        <p class="section-number">Section 06</p>
+        <h2>Your data and content</h2>
+        <p>As between you and REMdi, you retain ownership of the personal data and any content you submit to the Service, including notes, inputs, and preferences ("User Content").</p>
+        <p>You grant REMdi a limited, non-exclusive, worldwide, royalty-free license to host, use, process, reproduce, adapt, transmit, and display your User Content as necessary to operate, maintain, secure, improve, and provide the Service and to comply with law.</p>
+        <p>We may create and use de-identified, anonymized, and aggregated data derived from the Service for lawful business purposes — including analytics, service improvement, and product development — provided that such data does not identify you personally.</p>
+        <p>Our <a href="/privacy" class="inline-link">Privacy Policy</a> explains how we collect, use, store, transfer, and disclose personal data. Where required by law, we will request separate consent for the collection or use of sleep, health-related, or other sensitive data.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s7">
+        <p class="section-number">Section 07</p>
+        <h2>Subscriptions, billing, cancellation, and refunds</h2>
+        <p>REMdi may offer the following paid plans through Apple in-app purchase:</p>
+        <ul>
+          <li>A monthly plan at an intended U.S. list price of $1 per month.</li>
+          <li>A yearly plan at an intended U.S. list price of $8 per year.</li>
+          <li>A lifetime plan at an intended U.S. list price of $50 as a one-time purchase.</li>
+        </ul>
+        <p>Actual prices may vary by country, local currency, taxes, Apple storefront, or promotional offer. The price shown in the App Store at the time of purchase controls.</p>
+        <p><strong class="label">Free trial.</strong> REMdi may offer a free trial before a paid subscription begins. The trial length and any applicable conditions will be displayed to you in the App Store purchase flow at the time of purchase. If you do not cancel before the trial ends, your subscription will automatically convert to a paid subscription at the price and billing interval shown during checkout.</p>
+        <p><strong class="label">Auto-renewal.</strong> Monthly and yearly subscriptions automatically renew unless you cancel before the renewal date shown in your Apple account settings. By purchasing an auto-renewing subscription, you authorize Apple to charge your payment method for recurring fees in accordance with Apple's purchase flow.</p>
+        <div class="highlight-box">
+          <p><strong class="label">Apple handles billing, cancellations, and refunds.</strong> For App Store purchases, Apple — not REMdi — processes billing, renewals, cancellation mechanics, and refund requests. You must manage or cancel your subscription through your Apple account and App Store subscription settings. Refund requests for App Store purchases must be submitted to Apple.</p>
+        </div>
+        <p>If you cancel a monthly or yearly subscription, cancellation takes effect at the end of the then-current paid period and you retain access to paid features until that period ends. Cancelling stops future renewals only.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s8">
+        <p class="section-number">Section 08</p>
+        <h2>Lifetime purchase terms</h2>
+        <p><strong class="label">Meaning of "lifetime."</strong> If you purchase the REMdi lifetime plan, "lifetime" means the commercial lifetime of the REMdi paid service for the account that made the purchase. It does not mean your lifetime and does not guarantee that the Service, every feature, or every platform integration will remain available forever.</p>
+        <p>A lifetime purchase provides access to the paid REMdi features included in the lifetime offering at the time of purchase, together with updates to those features that we choose to make available generally to lifetime purchasers. It does not automatically include future products, separate services, separately priced add-ons, enterprise offerings, or features we later designate as outside the lifetime offering.</p>
+        <p>We may change, suspend, or discontinue some or all of the Service for business, legal, technical, or operational reasons. If the paid Service is permanently discontinued, lifetime access will end when the Service ends. Except where required by law, a lifetime purchase does not entitle you to perpetual maintenance, support, hosting, or ongoing service availability.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s9">
+        <p class="section-number">Section 09</p>
+        <h2>Prohibited conduct</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Use the Service in violation of law or these Terms.</li>
+          <li>Interfere with or disrupt the Service or its security.</li>
+          <li>Access the Service using bots, scrapers, or unauthorized automated means.</li>
+          <li>Attempt to probe, scan, or test vulnerabilities.</li>
+          <li>Introduce malware, harmful code, or abusive traffic.</li>
+          <li>Impersonate another person or misrepresent your affiliation.</li>
+          <li>Copy, mirror, frame, or commercially exploit the Service without permission.</li>
+          <li>Reverse engineer or attempt to extract the Service's source code, models, or logic except to the extent non-waivable law expressly permits it.</li>
+          <li>Use the Service for life-critical, safety-critical, clinical, emergency, or regulated medical purposes.</li>
+        </ul>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s10">
+        <p class="section-number">Section 10</p>
+        <h2>Service changes and availability</h2>
+        <p>We may update the Service, release patches, change features, fix bugs, add or remove functionality, and modify the user experience at any time. Some updates may be required for continued use of the Service.</p>
+        <p>We do not guarantee that the Service, any alarm, any notification, any sleep-stage estimate, any insight, or any feature will always be accurate, available, uninterrupted, timely, secure, or error-free.</p>
+        <p>The Service may depend on operating systems, app stores, device hardware, sensors, network connectivity, cloud infrastructure, identity providers, or other third-party services that we do not control. We are not responsible for third-party outages, delays, account restrictions, policy changes, or failures.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s11">
+        <p class="section-number">Section 11</p>
+        <h2>Termination and suspension</h2>
+        <p>You may stop using the Service at any time and delete your account by following the instructions in the app or by contacting us at <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a>. Deleting your account does not itself cancel any App Store subscription — subscriptions must be canceled through Apple.</p>
+        <p>We may suspend or terminate your access to the Service, with or without notice, if we reasonably believe you violated these Terms, your use creates security or legal risk, we are required to do so by law or platform rule, or the Service is being discontinued.</p>
+        <p>Upon termination, your right to use the Service ends immediately. After account deletion, we may delete or de-identify your personal data and User Content subject to our Privacy Policy and applicable legal obligations.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s12">
+        <p class="section-number">Section 12</p>
+        <h2>Disclaimer of warranties</h2>
+        <div class="caps-block">
+          <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. REMDI DISCLAIMS ALL IMPLIED WARRANTIES, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, QUIET ENJOYMENT, AND NON-INFRINGEMENT, AND ANY WARRANTIES ARISING OUT OF COURSE OF DEALING, USAGE, OR TRADE.</p>
+        </div>
+        <div class="caps-block">
+          <p>REMDI DOES NOT GUARANTEE ANY PARTICULAR WAKE-UP TIME, SLEEP OUTCOME, PHYSIOLOGICAL RESULT, WELLNESS RESULT, ACCURACY LEVEL, OR FITNESS FOR ANY TIME-SENSITIVE, SAFETY-SENSITIVE, MEDICAL, CLINICAL, EMPLOYMENT, OR TRAVEL PURPOSE.</p>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s13">
+        <p class="section-number">Section 13</p>
+        <h2>Limitation of liability</h2>
+        <div class="caps-block">
+          <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REMDI AND ITS AFFILIATES, OWNERS, OFFICERS, DIRECTORS, EMPLOYEES, CONTRACTORS, AGENTS, LICENSORS, AND SERVICE PROVIDERS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, GOODWILL, DATA, BUSINESS, OPPORTUNITY, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR RELATING TO THE SERVICE OR THESE TERMS.</p>
+        </div>
+        <div class="caps-block">
+          <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REMDI'S TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS ARISING OUT OF OR RELATING TO THE SERVICE OR THESE TERMS WILL NOT EXCEED THE GREATER OF: (A) THE TOTAL AMOUNT YOU PAID FOR THE SERVICE DURING THE TWELVE MONTHS BEFORE THE EVENT GIVING RISE TO THE CLAIM; OR (B) ONE HUNDRED U.S. DOLLARS (US $100).</p>
+        </div>
+        <p>Nothing in these Terms excludes or limits liability that cannot lawfully be excluded or limited under applicable law.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s14">
+        <p class="section-number">Section 14</p>
+        <h2>Indemnification</h2>
+        <p>To the maximum extent permitted by applicable law, you agree to indemnify, defend, and hold harmless REMdi and its affiliates, owners, officers, directors, employees, contractors, agents, licensors, and service providers from and against any third-party claims, liabilities, damages, losses, and expenses — including reasonable attorneys' fees — arising out of or relating to your misuse of the Service, your violation of these Terms or applicable law, your User Content, or your infringement of any third party's rights.</p>
+        <p>This section does not require you to indemnify REMdi for claims caused by REMdi's own gross negligence, willful misconduct, or fraud where applicable law prohibits that result.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s15">
+        <p class="section-number">Section 15</p>
+        <h2>Dispute resolution, arbitration, and governing law</h2>
+        <p><strong class="label">Informal resolution first.</strong> Before filing a claim, you and REMdi agree to try to resolve the dispute informally. Send a written notice of dispute to <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a> describing your claim, the facts, and the relief requested. If the dispute is not resolved within 30 days, either party may proceed as described below.</p>
+        <p><strong class="label">Governing law.</strong> Except to the extent superseded by the Federal Arbitration Act or prohibited by applicable law, these Terms are governed by the laws of the State of Wyoming, without regard to conflict-of-laws rules.</p>
+        <p><strong class="label">Agreement to arbitrate.</strong> Except for disputes that qualify for small claims court, disputes relating to intellectual property or unauthorized access, and claims that applicable law does not permit to be resolved by binding individual arbitration, you and REMdi agree to resolve disputes through final and binding individual arbitration administered by the American Arbitration Association (AAA) under its Consumer Arbitration Rules.</p>
+        <div class="caps-block">
+          <p>CLASS ACTION WAIVER: TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, YOU AND REMDI AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN AN INDIVIDUAL CAPACITY AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY CLASS, COLLECTIVE, CONSOLIDATED, OR REPRESENTATIVE ACTION OR PROCEEDING.</p>
+        </div>
+        <p><strong class="label">Opt-out right.</strong> You may opt out of this arbitration agreement by sending a written opt-out notice to <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a> within 30 days after first accepting these Terms. Your notice must include your full name, the email address associated with your account, and a statement that you wish to opt out of arbitration. Opting out does not affect any other part of these Terms.</p>
+        <p><strong class="label">International users.</strong> If you live in a jurisdiction that gives you non-waivable rights regarding forum, governing law, arbitration, class waivers, or other consumer protections, those rights apply to the extent required by law.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s16">
+        <p class="section-number">Section 16</p>
+        <h2>Apple App Store additional terms</h2>
+        <p>If you obtained the app through Apple's App Store, you acknowledge that these Terms are between you and REMdi only — not with Apple. Apple is not responsible for the Service or its content and has no obligation to furnish any maintenance or support services with respect to the app.</p>
+        <p>To the extent any warranty exists and is not effectively disclaimed, you may notify Apple if the app fails to conform to that warranty, and Apple may refund the purchase price you paid. To the maximum extent permitted by applicable law, Apple has no other warranty obligation with respect to the app.</p>
+        <p>You acknowledge that REMdi, not Apple, is responsible for addressing any claims relating to the app, including product liability claims, claims that the app fails to comply with legal or regulatory requirements, and claims arising under consumer-protection or privacy laws. REMdi, not Apple, is also responsible for any third-party intellectual property infringement claim relating to the app.</p>
+        <p>You represent and warrant that you are not located in a country subject to a U.S. government embargo and are not on any U.S. government list of prohibited or restricted parties.</p>
+        <p>Apple and Apple's subsidiaries are third-party beneficiaries of these Apple App Store additional terms and, upon your acceptance of these Terms, will have the right to enforce them against you as a third-party beneficiary.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s17">
+        <p class="section-number">Section 17</p>
+        <h2>General terms</h2>
+        <p><strong class="label">Entire agreement.</strong> These Terms, together with the Privacy Policy and any terms presented during purchase or within the Service, constitute the entire agreement between you and REMdi regarding the Service.</p>
+        <p><strong class="label">Severability.</strong> If any provision of these Terms is held invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
+        <p><strong class="label">No waiver.</strong> A failure by REMdi to enforce any provision of these Terms is not a waiver of that provision.</p>
+        <p><strong class="label">Assignment.</strong> You may not assign these Terms without our prior written consent. We may assign these Terms in connection with a merger, acquisition, or sale of assets.</p>
+        <p><strong class="label">Force majeure.</strong> We will not be liable for any failure or delay in performance caused by events beyond our reasonable control, including acts of God, power or internet outages, platform outages, governmental action, or failures of third-party services.</p>
+        <div class="highlight-box">
+          <p><strong class="label">Contact us</strong><br>
+          REMdi<br>
+          Email: <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a><br>
+          Website: <a href="https://remdiapp.com" class="inline-link">remdiapp.com</a></p>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <footer>
     <p class="footer-copy">© REMdi 2026. All rights reserved.</p>
-    <a href="mailto:hello@remdiapp.com" class="footer-email">hello@remdiapp.com</a>
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="mailto:hello@remdiapp.com">hello@remdiapp.com</a>
+    </div>
   </footer>
 
 </body>
