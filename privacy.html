@@ -18,7 +18,6 @@
       --ink:    #2c2318;
       --serif:  'Cormorant Garamond', Georgia, serif;
       --sans:   'Jost', 'Helvetica Neue', sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     body {
@@ -44,6 +43,12 @@
     nav {
       padding: 28px 52px;
       border-bottom: 1px solid var(--linen);
+      position: sticky;
+      top: 0;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
     }
     .wordmark {
       font-family: var(--serif);
@@ -55,104 +60,197 @@
       font-style: italic;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 24px;
-      text-align: center;
-      position: relative;
+    /* ── Page header ── */
+    .page-header {
+      padding: 80px 52px 60px;
+      border-bottom: 1px solid var(--linen);
+      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) both;
     }
-
-    main::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(232,220,196,0.5) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      max-width: 480px;
-    }
-
     .eyebrow {
       font-size: 0.68rem;
       font-weight: 400;
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--bark);
-      margin-bottom: 28px;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) both;
+      margin-bottom: 20px;
     }
-
-    h1 {
+    .page-header h1 {
       font-family: var(--serif);
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 300;
       font-style: italic;
       color: var(--ink);
       line-height: 1.1;
       margin-bottom: 20px;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+    }
+    .meta {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--bark);
+      letter-spacing: 0.06em;
     }
 
-    .sub {
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 52px;
+      gap: 80px;
+    }
+
+    /* ── TOC sidebar ── */
+    .toc {
+      width: 220px;
+      flex-shrink: 0;
+      padding: 52px 0;
+    }
+    .toc-inner {
+      position: sticky;
+      top: 100px;
+    }
+    .toc-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-bottom: 20px;
+    }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .toc-list a {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--umber);
+      text-decoration: none;
+      padding: 5px 0 5px 12px;
+      border-left: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+    .toc-list a:hover {
+      color: var(--ink);
+      border-left-color: var(--bark);
+    }
+
+    /* ── Content ── */
+    .content {
+      flex: 1;
+      min-width: 0;
+      padding: 52px 0 80px;
+    }
+
+    .section {
+      margin-bottom: 56px;
+      animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .section:nth-child(1)  { animation-delay: 0.05s; }
+    .section:nth-child(2)  { animation-delay: 0.10s; }
+    .section:nth-child(3)  { animation-delay: 0.15s; }
+    .section:nth-child(4)  { animation-delay: 0.20s; }
+    .section:nth-child(5)  { animation-delay: 0.25s; }
+    .section:nth-child(6)  { animation-delay: 0.30s; }
+    .section:nth-child(7)  { animation-delay: 0.35s; }
+    .section:nth-child(8)  { animation-delay: 0.40s; }
+    .section:nth-child(9)  { animation-delay: 0.45s; }
+    .section:nth-child(10) { animation-delay: 0.50s; }
+    .section:nth-child(11) { animation-delay: 0.55s; }
+    .section:nth-child(12) { animation-delay: 0.60s; }
+    .section:nth-child(13) { animation-delay: 0.65s; }
+    .section:nth-child(14) { animation-delay: 0.70s; }
+    .section:nth-child(15) { animation-delay: 0.75s; }
+    .section:nth-child(16) { animation-delay: 0.80s; }
+    .section:nth-child(17) { animation-delay: 0.85s; }
+    .section:nth-child(18) { animation-delay: 0.90s; }
+
+    .section-number {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bark);
+      margin-bottom: 10px;
+    }
+    .section h2 {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .section p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--umber);
+      line-height: 1.85;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      list-style: none;
+      margin: 12px 0 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .section ul li {
       font-size: 0.88rem;
       font-weight: 300;
       color: var(--umber);
       line-height: 1.75;
       letter-spacing: 0.02em;
-      margin-bottom: 52px;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+      padding-left: 20px;
+      position: relative;
+    }
+    .section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--bark);
+      font-size: 0.75rem;
     }
 
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--bark);
-      text-decoration: none;
-      position: relative;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both;
-      transition: color 0.2s;
+    .highlight-box {
+      background: var(--sand);
+      border-left: 2px solid var(--bark);
+      padding: 20px 24px;
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
     }
-    .back-link::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--ink);
-      transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+    .highlight-box p {
+      margin-bottom: 0 !important;
+      font-size: 0.85rem !important;
     }
-    .back-link:hover { color: var(--ink); }
-    .back-link:hover::after { width: 100%; }
-    .back-link svg { transition: transform 0.2s; }
-    .back-link:hover svg { transform: translateX(-3px); }
 
     .divider {
       width: 40px;
       height: 1px;
       background: var(--linen);
-      margin: 44px auto;
-      animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+      margin: 0 0 52px 0;
     }
 
+    a.inline-link {
+      color: var(--umber);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    a.inline-link:hover { color: var(--ink); }
+
+    /* ── Footer ── */
     footer {
       border-top: 1px solid var(--linen);
       padding: 28px 52px;
@@ -168,7 +266,11 @@
       color: var(--bark);
       letter-spacing: 0.04em;
     }
-    .footer-email {
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
       font-size: 0.75rem;
       font-weight: 300;
       color: var(--bark);
@@ -176,15 +278,19 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-email:hover { color: var(--ink); }
+    .footer-links a:hover { color: var(--ink); }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
       nav { padding: 22px 24px; }
+      .page-header { padding: 52px 24px 40px; }
+      .layout { flex-direction: column; padding: 0 24px; gap: 0; }
+      .toc { display: none; }
+      .content { padding: 40px 0 60px; }
       footer { padding: 24px; flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -195,24 +301,275 @@
     <a href="/" class="wordmark">REMdi</a>
   </nav>
 
-  <main>
-    <div class="content">
-      <p class="eyebrow">Legal</p>
-      <h1>Privacy Policy</h1>
+  <div class="page-header" style="max-width:1100px;width:100%;margin:0 auto;padding-left:52px;padding-right:52px;">
+    <p class="eyebrow">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective date: May 30, 2026 &nbsp;·&nbsp; Version 1.0</p>
+  </div>
+
+  <div class="layout">
+
+    <!-- Sidebar TOC -->
+    <aside class="toc">
+      <div class="toc-inner">
+        <p class="toc-label">Contents</p>
+        <ul class="toc-list">
+          <li><a href="#s1">1. Introduction</a></li>
+          <li><a href="#s2">2. Who controls your data</a></li>
+          <li><a href="#s3">3. Data we collect</a></li>
+          <li><a href="#s4">4. How we collect it</a></li>
+          <li><a href="#s5">5. Why we use it</a></li>
+          <li><a href="#s6">6. Legal bases</a></li>
+          <li><a href="#s7">7. HealthKit</a></li>
+          <li><a href="#s8">8. Who we share with</a></li>
+          <li><a href="#s9">9. Storage & security</a></li>
+          <li><a href="#s10">10. International transfers</a></li>
+          <li><a href="#s11">11. Data retention</a></li>
+          <li><a href="#s12">12. Your rights</a></li>
+          <li><a href="#s13">13. Children's privacy</a></li>
+          <li><a href="#s14">14. California disclosures</a></li>
+          <li><a href="#s15">15. Biometrics & wellness</a></li>
+          <li><a href="#s16">16. Cookies & tracking</a></li>
+          <li><a href="#s17">17. Changes</a></li>
+          <li><a href="#s18">18. Contact</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+
+      <section class="section" id="s1">
+        <p class="section-number">Section 01</p>
+        <h2>Introduction and scope</h2>
+        <p>REMdi is a consumer iOS sleep optimization app designed to help users wake at a more optimal point in their sleep cycle using sleep and wellness data. REMdi is a general wellness product. It is not a medical device and is not intended to diagnose, treat, cure, monitor, or prevent any disease or medical condition.</p>
+        <p>This Privacy Policy explains how REMdi collects, uses, stores, protects, and deletes personal data when you use the REMdi app, create an account, connect supported wearables or accounts, visit remdiapp.com, contact us, or otherwise interact with REMdi.</p>
+        <p>This Privacy Policy applies to the REMdi iOS app, remdiapp.com, and related customer support communications. It does not govern the privacy practices of Apple, Google, Oura, WHOOP, or other third parties that have their own privacy notices.</p>
+      </section>
+
       <div class="divider"></div>
-      <p class="sub">This document is being prepared thoughtfully and will be published before REMdi launches. We take your privacy seriously and are committed to full transparency.</p>
-      <a href="/" class="back-link">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8.5 2.5L4 7L8.5 11.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to home
-      </a>
-    </div>
-  </main>
+
+      <section class="section" id="s2">
+        <p class="section-number">Section 02</p>
+        <h2>Who controls your data</h2>
+        <p>REMdi is operated by the REMdi team. You can reach us at <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a>.</p>
+        <p>You can contact us about privacy, data rights, or complaints at <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a>. Under certain laws, you may also have the right to complain to your local data protection or privacy regulator. EEA users may lodge a complaint with the supervisory authority in the Member State of their habitual residence, place of work, or the place of the alleged infringement.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s3">
+        <p class="section-number">Section 03</p>
+        <h2>The data we collect</h2>
+        <p><strong style="font-weight:400;color:var(--ink);">Account and identity data.</strong> We collect your first name, email address, account identifiers, and sign-in credentials or tokens needed to operate Sign in with Apple or, if you choose it, Sign in with Google.</p>
+        <p><strong style="font-weight:400;color:var(--ink);">Sleep and wellness data.</strong> Depending on the features you use and the connections you enable, we collect or process sleep stages, HRV, heart rate, readiness scores, alarm interaction history, and chronotype information that REMdi derives from sleep-related data.</p>
+        <p><strong style="font-weight:400;color:var(--ink);">Device and technical data.</strong> We collect your device type and limited technical and account data needed to provide, secure, and troubleshoot the app.</p>
+        <p><strong style="font-weight:400;color:var(--ink);">Onboarding and user-provided data.</strong> We collect information you enter directly during onboarding or later in the app.</p>
+        <p><strong style="font-weight:400;color:var(--ink);">Subscription and support data.</strong> Your subscription is purchased through Apple's in-app purchase system. We may receive limited subscription-status or transaction-related information needed to confirm your entitlement, provide support, and maintain your account. We do not receive or store your full payment card number.</p>
+        <div class="highlight-box">
+          <p><strong style="font-weight:400;color:var(--ink);">Sensitive data.</strong> Some data processed by REMdi — including sleep, heart rate, HRV, readiness, and similar wellness signals — may be considered health or other sensitive personal data under certain laws. We treat that data with heightened care.</p>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s4">
+        <p class="section-number">Section 04</p>
+        <h2>How we collect your data</h2>
+        <p>We collect data in four main ways:</p>
+        <ul>
+          <li>Directly from you, including when you create an account, complete onboarding, contact support, or adjust settings.</li>
+          <li>From Apple sign-in services, if you use Sign in with Apple.</li>
+          <li>From connected third-party services you choose to link, including the Oura API and the WHOOP API, which connect through OAuth 2.0 and only after you authorize the connection.</li>
+          <li>From Apple HealthKit on your device, if you grant HealthKit permission. REMdi's HealthKit access is designed to operate on-device only.</li>
+        </ul>
+        <p>We also create limited derived information — such as chronotype, readiness-related outputs, and alarm optimization signals — from the data you provide or authorize us to access. REMdi does not use this analysis to make legal decisions or similarly significant decisions about you.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s5">
+        <p class="section-number">Section 05</p>
+        <h2>Why we use your data</h2>
+        <p>We use personal data only for the following purposes:</p>
+        <ul>
+          <li>To provide the REMdi service, including sleep-cycle analysis, alarm timing, chronotype estimation, readiness-related features, and account functionality.</li>
+          <li>To authenticate you and maintain the security of your account.</li>
+          <li>To import data from Oura or WHOOP when you choose to connect those services.</li>
+          <li>To process onboarding inputs and personalize the app experience.</li>
+          <li>To confirm your subscription status and provide customer support.</li>
+          <li>To protect the app, investigate bugs, prevent abuse, maintain service integrity, and comply with applicable law.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>We do not use your personal data for advertising, targeted advertising, brokered data products, or cross-context behavioral advertising. We do not sell your personal data.</p>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s6">
+        <p class="section-number">Section 06</p>
+        <h2>Legal bases for processing</h2>
+        <p>If you are in the EEA, UK, or another jurisdiction that requires a legal basis for processing, REMdi relies on the following bases, as applicable:</p>
+        <ul>
+          <li><strong style="font-weight:400;color:var(--ink);">Consent.</strong> We rely on your consent, and where required your explicit consent, to access and process sleep and wellness data, including connected-wearable data and other health-related data, and to process optional integrations you choose to enable.</li>
+          <li><strong style="font-weight:400;color:var(--ink);">Contract.</strong> We process account, authentication, support, and service-operation data as necessary to provide REMdi to you and perform our contract with you.</li>
+          <li><strong style="font-weight:400;color:var(--ink);">Legitimate interests.</strong> Where permitted by law, we process limited data for security, fraud prevention, debugging, abuse detection, and service reliability, provided those interests are not overridden by your rights and interests.</li>
+        </ul>
+        <p>Where processing is based on consent, you may withdraw that consent at any time. Withdrawal does not affect processing that already occurred before withdrawal. If you withdraw consent for data that is necessary to REMdi's core operation, some features may stop working.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s7">
+        <p class="section-number">Section 07</p>
+        <h2>HealthKit-specific notice</h2>
+        <p>If you grant REMdi access to Apple HealthKit, REMdi uses that HealthKit data only to provide REMdi's sleep and wellness features to you.</p>
+        <ul>
+          <li>REMdi does not use HealthKit data, or information obtained through HealthKit, for advertising, marketing, or use-based data mining.</li>
+          <li>REMdi does not sell, rent, broker, or share HealthKit data with advertising platforms, data brokers, or information resellers.</li>
+          <li>REMdi does not disclose HealthKit data to third parties without your prior express consent, and then only to provide health or fitness-related services you request or enable.</li>
+        </ul>
+        <p>Based on REMdi's current design, HealthKit access is on-device only. If that design changes in the future, REMdi will obtain any required permissions and update this Privacy Policy before the change takes effect.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s8">
+        <p class="section-number">Section 08</p>
+        <h2>Who we share your data with</h2>
+        <p>REMdi does not sell your personal data and does not share personal data with third parties for their own advertising or marketing purposes.</p>
+        <p>REMdi does disclose data in the following limited situations:</p>
+        <ul>
+          <li><strong style="font-weight:400;color:var(--ink);">Service providers acting on our behalf.</strong> We use Supabase hosted on AWS for backend hosting, storage, and database services. These providers process data only to provide infrastructure and related services to REMdi.</li>
+          <li><strong style="font-weight:400;color:var(--ink);">Identity providers you choose.</strong> If you use Sign in with Apple or Sign in with Google, the relevant provider processes the authentication information needed to sign you in.</li>
+          <li><strong style="font-weight:400;color:var(--ink);">Connected integrations you choose.</strong> If you connect Oura or WHOOP, the relevant provider will send REMdi data and connection information that you have authorized.</li>
+          <li><strong style="font-weight:400;color:var(--ink);">Apple subscription processing.</strong> Apple processes your in-app purchases under Apple's own terms and privacy practices.</li>
+          <li><strong style="font-weight:400;color:var(--ink);">Legal reasons.</strong> We may disclose limited data if required by law, court order, or binding legal process, or where necessary to protect rights, security, or the integrity of REMdi.</li>
+        </ul>
+        <p>We require processors and service providers to protect personal data and use it only for the services they provide to REMdi, not for their own unrelated purposes.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s9">
+        <p class="section-number">Section 09</p>
+        <h2>How we store and protect your data</h2>
+        <p>REMdi stores server-side data using Supabase hosted on AWS. We use encryption in transit and at rest, account authentication controls, and user-level access restrictions intended to prevent one user from accessing another user's data.</p>
+        <p>We apply the principle of data minimization and privacy by design, meaning we try to collect only the data needed for the features you choose to use and to restrict access by default.</p>
+        <p>No method of transmission or storage is completely secure, so we cannot guarantee absolute security. If REMdi experiences a breach that triggers legal notice obligations, we will provide notice as required by applicable law.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s10">
+        <p class="section-number">Section 10</p>
+        <h2>International transfers</h2>
+        <p>REMdi operates internationally. Depending on where you are located, your data may be processed in the United States and other countries where REMdi or its service providers operate infrastructure.</p>
+        <p>Where applicable law requires safeguards for international transfers, REMdi will rely on an appropriate transfer mechanism and technical and organizational safeguards.</p>
+        <p>If you are in Brazil, international transfers are subject to the LGPD and ANPD's transfer rules. If you are in Canada, cross-border transfers remain subject to applicable Canadian privacy obligations.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s11">
+        <p class="section-number">Section 11</p>
+        <h2>Data retention</h2>
+        <p>REMdi keeps personal data only for as long as reasonably necessary to provide the service, fulfill the purposes described in this Privacy Policy, resolve disputes, enforce agreements, protect the service, and comply with legal obligations.</p>
+        <ul>
+          <li>Account profile data is kept while your account is active.</li>
+          <li>Sleep and wellness data stored in REMdi's backend is kept while your account is active so the app can provide history, patterns, and alarm optimization.</li>
+          <li>OAuth connection data and tokens are kept until you disconnect the integration, revoke access, or delete your account.</li>
+          <li>Security logs and abuse-prevention records may be retained for up to 12 months.</li>
+          <li>Limited billing, tax, accounting, and legal-compliance records may be retained for longer where required by law.</li>
+        </ul>
+        <p>If you delete your account, REMdi will delete or de-identify your personal data from active systems within 30 days. Data may remain in encrypted backups for up to 90 days before routine overwrite or deletion.</p>
+        <p>If an account remains inactive for 24 months and there is no active subscription or legal need to retain the data, REMdi may delete or de-identify associated data after giving notice where reasonably feasible.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s12">
+        <p class="section-number">Section 12</p>
+        <h2>Your rights and choices</h2>
+        <p>Depending on where you live, you may have the right to request access to your personal data, correct inaccurate data, delete data, withdraw consent, restrict or object to certain processing, and request a portable export of data you provided to us.</p>
+        <p><strong style="font-weight:400;color:var(--ink);">GDPR and similar-law rights.</strong> If you are in the EEA or another jurisdiction with similar rights, you may request access, rectification, erasure, restriction, and portability of eligible data, and you may object to processing based on legitimate interests where applicable. You also have the right to lodge a complaint with a supervisory authority.</p>
+        <p><strong style="font-weight:400;color:var(--ink);">California rights.</strong> If you are a California resident and the CCPA applies to REMdi, you may have rights to know, delete, correct, and receive information about categories of data collected. We do not sell or share personal information as those terms are used in the CCPA.</p>
+        <p><strong style="font-weight:400;color:var(--ink);">Integration choices.</strong> You may disconnect Oura or WHOOP inside REMdi, by revoking the connection with the provider, or by deleting your REMdi account.</p>
+        <p>To exercise your rights, email <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a>. Where applicable, you may also initiate account deletion inside the app.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s13">
+        <p class="section-number">Section 13</p>
+        <h2>Children's privacy</h2>
+        <p>REMdi is not directed to children under 13, and we do not knowingly collect personal data from children under 13. If you are under 13, you may not use REMdi.</p>
+        <p>If we learn that we collected personal data from a child under 13 without the authorization required by law, we will delete that information. Parents or guardians who believe a child provided personal data to REMdi may contact us at <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a>.</p>
+        <p>If you are in a country where the age required to consent to online data processing is higher than 13, you may use REMdi only if you meet the age required by local law.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s14">
+        <p class="section-number">Section 14</p>
+        <h2>California-specific disclosures</h2>
+        <p>The categories of personal information collected by REMdi have included: identifiers and account data; health and wellness data; inferences such as chronotype and readiness-related outputs; device and technical data; app interaction data such as alarm interaction history; and limited subscription and account-status information.</p>
+        <p>REMdi collects personal information directly from you, from your chosen sign-in provider, from connected wearable providers you authorize, and from your device when you grant permission.</p>
+        <p>REMdi uses these categories to provide and secure the service, personalize functionality, maintain your account, support subscription access, troubleshoot issues, and comply with law.</p>
+        <p>REMdi has not sold or shared personal information for cross-context behavioral advertising and does not do so. Because REMdi does not sell or share personal information, REMdi is not required to provide a "Do Not Sell or Share" notice or link.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s15">
+        <p class="section-number">Section 15</p>
+        <h2>Biometrics and wellness data</h2>
+        <p>REMdi processes sleep and wellness information that may be considered sensitive personal data or health data under various laws. REMdi does not use your sleep, HRV, heart-rate, or readiness data as a biometric template to uniquely identify you.</p>
+        <p>If REMdi later introduces features that use face geometry, voiceprints, fingerprints, retina or iris scans, or other identifier templates for recognition or authentication, REMdi will provide any notices and obtain any consents required by applicable biometric laws before those features become active.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s16">
+        <p class="section-number">Section 16</p>
+        <h2>Cookies, website technologies, and tracking</h2>
+        <p>The REMdi iOS app does not use advertising cookies. REMdi does not use third-party advertising SDKs or cross-context behavioral advertising trackers.</p>
+        <p>The website at remdiapp.com may use basic technical measures such as standard server logs and strictly necessary site technologies needed for security, performance, or page delivery. REMdi does not use those technologies for advertising or data-broker purposes.</p>
+        <p>If REMdi later adds optional analytics or advertising technologies to the website, REMdi will update this Privacy Policy and, where required, request consent before using them.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s17">
+        <p class="section-number">Section 17</p>
+        <h2>Changes to this Privacy Policy</h2>
+        <p>REMdi may update this Privacy Policy from time to time to reflect changes in the app, integrations, legal requirements, or data practices. If we make a material change, we will update the effective date and post the new version at remdiapp.com and, where appropriate, inside the app.</p>
+        <p>If a change materially affects how we process data for which consent is required, we will seek any additional consent required by law before the change takes effect.</p>
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section" id="s18">
+        <p class="section-number">Section 18</p>
+        <h2>Contact us</h2>
+        <p>If you have questions, concerns, or privacy requests, please reach out:</p>
+        <div class="highlight-box">
+          <p><strong style="font-weight:400;color:var(--ink);">REMdi Privacy</strong><br>
+          Email: <a href="mailto:hello@remdiapp.com" class="inline-link">hello@remdiapp.com</a><br>
+          Website: <a href="https://remdiapp.com" class="inline-link">remdiapp.com</a></p>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <footer>
     <p class="footer-copy">© REMdi 2026. All rights reserved.</p>
-    <a href="mailto:hello@remdiapp.com" class="footer-email">hello@remdiapp.com</a>
+    <div class="footer-links">
+      <a href="/terms">Terms of Service</a>
+      <a href="mailto:hello@remdiapp.com">hello@remdiapp.com</a>
+    </div>
   </footer>
 
 </body>
